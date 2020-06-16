@@ -70,7 +70,49 @@ public class Logic {
 
     public boolean isWin() {
         int[][] table = this.convert();
+        int column = -1;
+        int row = -1;
         boolean result = false;
+
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table.length; j++) {
+                if (table[i][j] == 1) {
+                    row = i;
+                    column = j;
+                    break;
+                }
+            }
+            if (row != -1) {
+                break;
+            }
+        }
+
+        if (checkInColumn(table, column) || checkInRow(table, row)) {
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean checkInColumn(int[][] table, int index) {
+        boolean result = true;
+        for (int i = 0; i < table.length; i++) {
+            if(table[i][index] != 1) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public boolean checkInRow(int[][] table, int index) {
+        boolean result = true;
+        for (int i = 0; i < table.length; i++) {
+            if(table[index][i] != 1) {
+                result = false;
+                break;
+            }
+        }
         return result;
     }
 
