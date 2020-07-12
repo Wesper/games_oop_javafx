@@ -70,24 +70,21 @@ public class Logic {
 
     public boolean isWin() {
         int[][] table = this.convert();
-        int column = -1;
-        int row = -1;
+        int index = -1;
         boolean result = false;
 
         for (int i = 0; i < table.length; i++) {
-            for (int j = 0; j < table.length; j++) {
-                if (table[i][j] == 1) {
-                    row = i;
-                    column = j;
+                if (table[i][i] == 1) {
+                    index = i;
                     break;
                 }
-            }
-            if (row != -1) {
-                break;
-            }
         }
 
-        if (checkInColumn(table, column) || checkInRow(table, row)) {
+        if (index == -1) {
+            return result;
+        }
+
+        if (checkInColumn(table, index) || checkInRow(table, index)) {
             result = true;
         }
 
