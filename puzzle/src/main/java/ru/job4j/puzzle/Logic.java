@@ -43,8 +43,8 @@ public class Logic {
         boolean result = cells.length > 0;
         for (Cell cell : cells) {
             if (this.findBy(cell) != -1) {
-               result = false;
-               break;
+                result = false;
+                break;
             }
         }
         return result;
@@ -70,22 +70,15 @@ public class Logic {
 
     public boolean isWin() {
         int[][] table = this.convert();
-        int index = -1;
         boolean result = false;
 
         for (int i = 0; i < table.length; i++) {
-                if (table[i][i] == 1) {
-                    index = i;
+            if (table[i][i] == 1) {
+                if (checkInColumn(table, i) || checkInRow(table, i)) {
+                    result = true;
                     break;
                 }
-        }
-
-        if (index == -1) {
-            return result;
-        }
-
-        if (checkInColumn(table, index) || checkInRow(table, index)) {
-            result = true;
+            }
         }
 
         return result;
@@ -94,7 +87,7 @@ public class Logic {
     public boolean checkInColumn(int[][] table, int index) {
         boolean result = true;
         for (int i = 0; i < table.length; i++) {
-            if(table[i][index] != 1) {
+            if (table[i][index] != 1) {
                 result = false;
                 break;
             }
@@ -105,7 +98,7 @@ public class Logic {
     public boolean checkInRow(int[][] table, int index) {
         boolean result = true;
         for (int i = 0; i < table.length; i++) {
-            if(table[index][i] != 1) {
+            if (table[index][i] != 1) {
                 result = false;
                 break;
             }
